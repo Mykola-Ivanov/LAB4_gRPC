@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer";
+
+
+service MatrixOperator{
+	rpc CreateMatrices(MatrixesDimensionRequest) returns (MatrixesDimensionReply);
+	rpc Getmatrix(RequestMatrix) returns (ReplyMatrix);
+}
+
+message MatrixesDimensionReply{
+	int32 count = 1;
+}
+
+message MatrixesDimensionRequest{
+	int32 size = 1;
+}
+
+message RequestMatrix{
+	int32 id = 1;
+	// 0 - result matrix
+	//1 - Y1  matrix
+	//2 - Y2 matrix
+	//3 - Y3 matrix
+}
+message ReplyMatrix{
+	int32 rows =1;
+	int32 cols =2;
+	repeated float row = 3 [packed = true];
+}
